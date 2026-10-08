@@ -1,0 +1,43 @@
+{
+  "pages": {
+    "en": {
+      "Adresse fehlt": "Address missing",
+      "Adresse unvollständig": "Address incomplete",
+      "Alle Adressen vollständig": "All addresses complete",
+      "Als Nächstes feiert {0} am {1} Geburtstag.": "Next up: {0}'s birthday on {1}.",
+      "Anstehende Geburtstage": "Upcoming Birthdays",
+      "Bearbeiten": "Edit",
+      "Diese Woche": "This Week",
+      "Für Aufkleber ergänzen": "Complete for stickers",
+      "Für Karte und Aufkleber fehlen noch: {0}.": "Still missing for card and stickers: {0}.",
+      "Geburtstage diese Woche": "Birthdays This Week",
+      "Geburtstage in 30 Tagen": "Birthdays in 30 Days",
+      "Gemeindedaten anlegen": "Create parish details",
+      "Gemeindedaten ergänzen": "Complete parish details",
+      "Grußtext": "Greeting Text",
+      "Heute": "Today",
+      "Heute hat {0} Geburtstag.": "Today is {0}'s birthday.",
+      "Hinterlege zuerst Logo, Grußtext und Unterschrift deiner Kirchengemeinde.": "First add the logo, greeting text, and signature of your parish.",
+      "Hinzugefügt": "Added",
+      "In 30 Tagen": "In 30 Days",
+      "Kein Geburtsdatum": "No birth date",
+      "Keine Einträge in dieser Auswahl.": "No entries in this selection.",
+      "Keine Geburtstage in 7 Tagen": "No birthdays in 7 days",
+      "Lege deine Geburtstagsliste an, dann entstehen Karten und Aufkleber.": "Create your birthday list to generate cards and stickers.",
+      "Morgen": "Tomorrow",
+      "Nichts in Sicht": "Nothing in sight",
+      "Noch keine Geburtsdaten in der Liste.": "No birth dates in the list yet.",
+      "Noch keine Personen in der Liste.": "No people in the list yet.",
+      "Noch nichts hinzugefügt.": "Nothing added yet.",
+      "Ohne Namen": "Unnamed",
+      "Person hinzufügen": "Add person",
+      "Unterschrift": "Signature",
+      "Zuletzt hinzugefügt": "Recently Added",
+      "in {0} Tagen": "in {0} days",
+      "jemand": "someone",
+      "{0} Einträge in der Liste": "{0} entries in the list",
+      "{0}. Geburtstag": "{0}th Birthday"
+    }
+  },
+  "v": 1
+}

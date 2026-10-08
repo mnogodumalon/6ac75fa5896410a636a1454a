@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "language": "de",
+  "understanding": {
+    "summary": "Die App verwaltet die Geburtstagsliste der Kirchengemeinde und bereitet daraus für jede Person eine Geburtstagskarte und einen Adressaufkleber vor. Beides trägt das Logo, den Grußtext und die Unterschrift der Kirchengemeinde.",
+    "roles": [
+      "Gemeindesekretariat",
+      "Pfarrer oder Ehrenamtliche, die Karten verschicken"
+    ],
+    "main_tasks": [
+      "Geburtstagsliste pflegen oder aus Excel importieren",
+      "Gemeindedaten mit Logo, Grußtext und Unterschrift hinterlegen",
+      "Geburtstagskarte und Adressaufkleber erstellen",
+      "Anstehende Geburtstage im Blick behalten"
+    ],
+    "platform_roles": [
+      {
+        "persona": "Gemeindesekretariat",
+        "role": "datenverarbeitung",
+        "apps": [
+          "geburtstagsliste",
+          "gemeindedaten"
+        ]
+      },
+      {
+        "persona": "Pfarrer oder Ehrenamtliche, die Karten verschicken",
+        "role": "standard",
+        "apps": [
+          "geburtstagsliste",
+          "gemeindedaten"
+        ]
+      }
+    ]
+  },
+  "flows": [
+    {
+      "slug": "geburtstagseintrag-erfassen",
+      "label": {
+        "de": "Geburtstagseintrag erfassen",
+        "en": "Add birthday entry"
+      },
+      "description": "Eine Person mit Adresse, Geburtsdatum, Kirchengemeinde und optionalem persönlichem Gruß in die Geburtstagsliste aufnehmen.",
+      "priority": "must",
+      "writes": [
+        {
+          "entity": "geburtstagsliste",
+          "op": "create",
+          "when": "always",
+          "fields": {
+            "gemeinde": "picked",
+            "anrede": "user",
+            "vorname": "user",
+            "nachname": "user",
+            "geburtsdatum": "user",
+            "strasse": "user",
+            "hausnummer": "user",
+            "postleitzahl": "user",
+            "ort": "user",
+            "persoenlicher_gruss": "user"
+          },
+          "needs": {}
+        }
+      ],
+      "required": [],
+      "brief": "# Flow `geburtstagseintrag-erfassen` — Geburtstagseintrag erfassen\nEine Person mit Adresse, Geburtsdatum, Kirchengemeinde und optionalem persönlichem Gruß in die Geburtstagsliste aufnehmen.\n\n## Your hook — import it, never rebuild what it owns\n`import { useGeburtstagseintragErfassenFlow } from '@/lib/journey/flows/GeburtstagseintragErfassen';` — generated from the Schreibliste below. It OWNS the form(s), one record search per picked field (columns and filter from the plan) and the submit plan with every fixed and derived value. You compose: `flow.forms.<entity>` for <Bound>/<Field>, `{...flow.picks.<field>.select} {...flow.pick('<field>')}` (or `flow.pickMany` for a multi pick) for <EntitySelectStep>, `flow.validateStep(n)` in StepNav.onNext, `flow.submit` + `flow.formList` for SummaryStep/SuccessStep, `flow.reset()`; what the hook does not own reads through its door `flow.port` — availability `useOccupancy(flow.port, '<entity>', { resource })`, a count `useRecordCount(flow.port, …)` — never import servicePort next to the hook. Options: `steps` (field → step), `items` (how a hit reads, per pick: gemeinde), `initial`, `messages`. The hook's docblock in .lane-context.md shows the exact call. Never import servicePort, useStepForm, useJourneySubmit, useRecordSearch or useDashboardData in this page — check-intents refuses a page that uses the hook and any of them.\n\n## Steps (in this order)\n1. Kirchengemeinde aus der Liste wählen\n2. Name, Anrede und Geburtsdatum eintragen\n3. Adresse eintragen\n4. Optional persönlichen Grußtext schreiben\n\n## Schreibliste — the ONLY writes this flow makes (the gate compares your plan steps with this list)\n- creates `geburtstagsliste`:\n    - `gemeinde`: from the record the user picks in this flow\n    - `anrede`: the user enters it (bind it through the layer: form.field/…)\n    - `vorname`: the user enters it (bind it through the layer: form.field/…)\n    - `nachname`: the user enters it (bind it through the layer: form.field/…)\n    - `geburtsdatum`: the user enters it (bind it through the layer: form.field/…)\n    - `strasse`: the user enters it (bind it through the layer: form.field/…)\n    - `hausnummer`: the user enters it (bind it through the layer: form.field/…)\n    - `postleitzahl`: the user enters it (bind it through the layer: form.field/…)\n    - `ort`: the user enters it (bind it through the layer: form.field/…)\n    - `persoenlicher_gruss`: the user enters it (bind it through the layer: form.field/…)\n\n## Reads\n- `gemeindedaten` columns gemeindename, ort\n\n## Success page\n- shows: `geburtstagsliste.nachname`, `geburtstagsliste.geburtsdatum`\n\n## Never write these — another flow or a tool owns them\n- `gemeindedaten.gemeindename` (owner: intent `gemeindedaten-pflegen`)\n- `gemeindedaten.strasse` (owner: intent `gemeindedaten-pflegen`)\n- `gemeindedaten.hausnummer` (owner: intent `gemeindedaten-pflegen`)\n- `gemeindedaten.postleitzahl` (owner: intent `gemeindedaten-pflegen`)\n- `gemeindedaten.ort` (owner: intent `gemeindedaten-pflegen`)\n- `gemeindedaten.logo` (owner: intent `gemeindedaten-pflegen`)\n- `gemeindedaten.standard_grusstext` (owner: intent `gemeindedaten-pflegen`)\n- `gemeindedaten.unterschrift` (owner: intent `gemeindedaten-pflegen`)\n"
+    },
+    {
+      "slug": "gemeindedaten-pflegen",
+      "label": {
+        "de": "Gemeindedaten einrichten",
+        "en": "Set up parish data"
+      },
+      "description": "Name, Anschrift, Logo, Standard-Grußtext und Unterschrift der Kirchengemeinde hinterlegen, damit Karten und Aufkleber sie nutzen.",
+      "priority": "must",
+      "writes": [
+        {
+          "entity": "gemeindedaten",
+          "op": "create",
+          "when": "always",
+          "fields": {
+            "gemeindename": "user",
+            "strasse": "user",
+            "hausnummer": "user",
+            "postleitzahl": "user",
+            "ort": "user",
+            "logo": "user",
+            "standard_grusstext": "user",
+            "unterschrift": "user"
+          },
+          "needs": {}
+        }
+      ],
+      "required": [],
+      "brief": "# Flow `gemeindedaten-pflegen` — Gemeindedaten einrichten\nName, Anschrift, Logo, Standard-Grußtext und Unterschrift der Kirchengemeinde hinterlegen, damit Karten und Aufkleber sie nutzen.\n\n## Your hook — import it, never rebuild what it owns\n`import { useGemeindedatenPflegenFlow } from '@/lib/journey/flows/GemeindedatenPflegen';` — generated from the Schreibliste below. It OWNS the form(s), one record search per picked field (columns and filter from the plan) and the submit plan with every fixed and derived value. You compose: `flow.forms.<entity>` for <Bound>/<Field>, `{...flow.picks.<field>.select} {...flow.pick('<field>')}` (or `flow.pickMany` for a multi pick) for <EntitySelectStep>, `flow.validateStep(n)` in StepNav.onNext, `flow.submit` + `flow.formList` for SummaryStep/SuccessStep, `flow.reset()`; what the hook does not own reads through its door `flow.port` — availability `useOccupancy(flow.port, '<entity>', { resource })`, a count `useRecordCount(flow.port, …)` — never import servicePort next to the hook. Options: `steps` (field → step), `items` (how a hit reads, per pick), `initial`, `messages`. The hook's docblock in .lane-context.md shows the exact call. Never import servicePort, useStepForm, useJourneySubmit, useRecordSearch or useDashboardData in this page — check-intents refuses a page that uses the hook and any of them.\n\n## Steps (in this order)\n1. Name und Anschrift eintragen\n2. Logo hochladen\n3. Standard-Grußtext und Unterschrift eintragen\n\n## Schreibliste — the ONLY writes this flow makes (the gate compares your plan steps with this list)\n- creates `gemeindedaten`:\n    - `gemeindename`: the user enters it (bind it through the layer: form.field/…)\n    - `strasse`: the user enters it (bind it through the layer: form.field/…)\n    - `hausnummer`: the user enters it (bind it through the layer: form.field/…)\n    - `postleitzahl`: the user enters it (bind it through the layer: form.field/…)\n    - `ort`: the user enters it (bind it through the layer: form.field/…)\n    - `logo`: the user enters it (bind it through the layer: form.field/…)\n    - `standard_grusstext`: the user enters it (bind it through the layer: form.field/…)\n    - `unterschrift`: the user enters it (bind it through the layer: form.field/…)\n\n## Success page\n- shows: `gemeindedaten.gemeindename`, `gemeindedaten.logo`\n- next flows to offer: `geburtstagseintrag-erfassen`\n\n## Never write these — another flow or a tool owns them\n- `geburtstagsliste.gemeinde` (owner: intent `geburtstagseintrag-erfassen`)\n- `geburtstagsliste.anrede` (owner: intent `geburtstagseintrag-erfassen`)\n- `geburtstagsliste.vorname` (owner: intent `geburtstagseintrag-erfassen`)\n- `geburtstagsliste.nachname` (owner: intent `geburtstagseintrag-erfassen`)\n- `geburtstagsliste.geburtsdatum` (owner: intent `geburtstagseintrag-erfassen`)\n- `geburtstagsliste.strasse` (owner: intent `geburtstagseintrag-erfassen`)\n- `geburtstagsliste.hausnummer` (owner: intent `geburtstagseintrag-erfassen`)\n- `geburtstagsliste.postleitzahl` (owner: intent `geburtstagseintrag-erfassen`)\n- `geburtstagsliste.ort` (owner: intent `geburtstagseintrag-erfassen`)\n- `geburtstagsliste.persoenlicher_gruss` (owner: intent `geburtstagseintrag-erfassen`)\n"
+    }
+  ],
+  "public_pages": [],
+  "tools": [],
+  "covered_by_platform": [
+    {
+      "wish": "Geburtstagsliste im Excel-Format als Grundlage",
+      "feature": "list_page"
+    },
+    {
+      "wish": "Liste aus Excel übernehmen und als Tabelle ausgeben",
+      "feature": "csv_json_export"
+    },
+    {
+      "wish": "Personen suchen und nach Geburtsdatum sortieren",
+      "feature": "search_filter"
+    }
+  ],
+  "ownership": {
+    "geburtstagsliste": {
+      "gemeinde": "intent:geburtstagseintrag-erfassen",
+      "anrede": "intent:geburtstagseintrag-erfassen",
+      "vorname": "intent:geburtstagseintrag-erfassen",
+      "nachname": "intent:geburtstagseintrag-erfassen",
+      "geburtsdatum": "intent:geburtstagseintrag-erfassen",
+      "strasse": "intent:geburtstagseintrag-erfassen",
+      "hausnummer": "intent:geburtstagseintrag-erfassen",
+      "postleitzahl": "intent:geburtstagseintrag-erfassen",
+      "ort": "intent:geburtstagseintrag-erfassen",
+      "persoenlicher_gruss": "intent:geburtstagseintrag-erfassen"
+    },
+    "gemeindedaten": {
+      "gemeindename": "intent:gemeindedaten-pflegen",
+      "strasse": "intent:gemeindedaten-pflegen",
+      "hausnummer": "intent:gemeindedaten-pflegen",
+      "postleitzahl": "intent:gemeindedaten-pflegen",
+      "ort": "intent:gemeindedaten-pflegen",
+      "logo": "intent:gemeindedaten-pflegen",
+      "standard_grusstext": "intent:gemeindedaten-pflegen",
+      "unterschrift": "intent:gemeindedaten-pflegen"
+    }
+  },
+  "dashboard": {
+    "focus": [
+      "Anstehende Geburtstage der nächsten Wochen",
+      "Anzahl der Einträge in der Geburtstagsliste",
+      "Zuletzt erzeugte Karten und Aufkleber unter Dateien"
+    ],
+    "hints": [
+      "Logo, Standard-Grußtext und Unterschrift zuerst bei den Gemeindedaten hinterlegen",
+      "Persönlicher Grußtext ersetzt bei Bedarf den Standard-Grußtext"
+    ],
+    "wishes": []
+  }
+}

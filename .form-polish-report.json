@@ -1,0 +1,16 @@
+{
+  "entities": {
+    "Gemeindedaten": {
+      "placeholders_set": 7,
+      "defaults_keys": [],
+      "computed_keys": [],
+      "reason": "Reine Stammdaten der Gemeinde ohne numerische Felder, daher keine Formeln oder Standardwerte."
+    },
+    "Geburtstagsliste": {
+      "placeholders_set": 9,
+      "defaults_keys": [],
+      "computed_keys": [],
+      "reason": "Reine Stammdaten ohne numerische Felder, daher keine Formeln und keine sinnvollen Standardwerte."
+    }
+  }
+}

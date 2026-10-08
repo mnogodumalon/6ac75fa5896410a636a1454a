@@ -1,0 +1,22 @@
+{
+  "GemeindedatenDialog.tsx": {
+    "gemeindename": "z. B. Ev. Kirchengemeinde Nord",
+    "strasse": "z. B. Kirchstraße",
+    "hausnummer": "z. B. 12a",
+    "postleitzahl": "z. B. 70173",
+    "ort": "z. B. Stuttgart",
+    "standard_grusstext": "Welcher Gruß steht auf der Karte?",
+    "unterschrift": "z. B. Pfarrer Müller und Team"
+  },
+  "GeburtstagslisteDialog.tsx": {
+    "vorname": "z. B. Maria",
+    "nachname": "z. B. Schneider",
+    "geburtsdatum": "Wann wurde die Person geboren?",
+    "strasse": "z. B. Kirchweg",
+    "hausnummer": "z. B. 12a",
+    "postleitzahl": "z. B. 50667",
+    "ort": "z. B. Köln",
+    "gemeinde": "Welche Kirchengemeinde?",
+    "persoenlicher_gruss": "Was soll im Gruß stehen?"
+  }
+}
