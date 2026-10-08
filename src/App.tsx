@@ -14,6 +14,9 @@ import { IntentPolicyLoader } from '@/components/IntentPolicyLoader';
 import IntentsAdmin from '@/pages/IntentsAdmin';
 import AppMap from '@/pages/AppMap';
 // <custom:imports>
+const IntentGeburtstagseintragErfassenPage = lazy(() => import('@/pages/intents/GeburtstagseintragErfassenPage'));
+import { DashboardSkeleton } from '@/components/DashboardStates';
+const IntentGemeindedatenPflegenPage = lazy(() => import('@/pages/intents/GemeindedatenPflegenPage'));
 // </custom:imports>
 
 // Lazy: public pages live outside <Layout> and only load on /#/public/:slug —
@@ -85,6 +88,8 @@ export default function App() {
                 <Route path="verwaltung/oeffentliche-seiten" element={<PublicPagesAdmin />} />
                 <Route path="verwaltung/oeffentliche-seiten/:slug/felder" element={<PublicPageFields />} />
                 {/* <custom:routes> */}
+                <Route path="intents/geburtstagseintrag-erfassen" element={<Suspense fallback={<DashboardSkeleton />}><IntentGeburtstagseintragErfassenPage /></Suspense>} />
+                <Route path="intents/gemeindedaten-pflegen" element={<Suspense fallback={<DashboardSkeleton />}><IntentGemeindedatenPflegenPage /></Suspense>} />
                 {/* </custom:routes> */}
                 {/* An unknown hash (a bookmark from before a rebuild renamed the
                     flows, a mistyped link) must not be a blank page. */}

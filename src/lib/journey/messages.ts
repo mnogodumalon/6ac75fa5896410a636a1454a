@@ -31,6 +31,8 @@ export type MessageFieldKey<E extends EntityKey> = E extends keyof MessageFields
 
 export const REQUIRED_MESSAGES: { [E in EntityKey]?: Partial<Record<MessageFieldKey<E>, string>> } = {
   // <custom:messages>
+  gemeindedaten: { gemeindename: "Bitte den Namen der Kirchengemeinde eingeben.", strasse: "Bitte die Straße eingeben.", hausnummer: "Bitte die Hausnummer eingeben.", postleitzahl: "Bitte die Postleitzahl eingeben.", ort: "Bitte den Ort eingeben." },
+  geburtstagsliste: { vorname: "Bitte den Vornamen eingeben.", nachname: "Bitte den Nachnamen eingeben.", geburtsdatum: "Bitte das Geburtsdatum wählen.", strasse: "Bitte die Straße eingeben.", hausnummer: "Bitte die Hausnummer eingeben.", postleitzahl: "Bitte die Postleitzahl eingeben.", ort: "Bitte den Ort eingeben.", gemeinde: "Bitte eine Kirchengemeinde auswählen." },
   // </custom:messages>
 };
 
